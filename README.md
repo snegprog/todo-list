@@ -21,7 +21,7 @@
 7. Уставновить пакеты composer <br>
 ```
 cd <path project>/api
-composer install
+composer install --no-dev
 ```
 
 ### Запуск
