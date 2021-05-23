@@ -12,7 +12,7 @@
 
 1. Создать рабочую БД (СУБД MySQL)
 2. Залить схему БД -
-`mysql -u <user db> -h <host db> <database> < ddl.sql`
+`mysql -u <user db> -h <host db> <database> < ddl.sql` (ddl.sql содержит тестовые данные)
 3. Файл `api/config/config.yaml.example` переименовать в `api/config/config.yaml`
 4. Настроить параметры подключения к БД в файле `api/config/config.yaml`
 5. Настроить параметр окружающей среды в файле `api/config/config.yaml`
