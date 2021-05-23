@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Todo List</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="container-fluid"
+        style="background: blueviolet; padding: 20px; font-size: 18px; color: white; margin-bottom: 15px;">
+    <div class="row justify-content-between">
+        <div class="col">
+            Todo List
+        </div>
+        <div class="col" style="position: relative; top: 18px; text-align: right;">
+        </div>
+    </div>
+</header>
+<div class="container" id="root" style="background: gainsboro; padding: 20px 10px;">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Название</th>
+            <th scope="col">Статус</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody id="tableTasks">
+        </tbody>
+    </table>
+</div>
+
+<script>
+    (function () {
+        const apiUrl = "http://127.0.0.1:8000";
+
+        const statuses = {
+            0: '<span style=\'color: black;"\'>Новая</span>',
+            1: '<span style=\'color: green;"\'>В работе</span>',
+            2: '<span style=\'color: blue;"\'>В ожидании</span>',
+            3: '<span style=\'color: pink;"\'>Выполнена</span>',
+        };
+
+        const moduleIndex = function () {
+        };
+
+        /**
+         * Получение/перерисовка задач
+         * @param callback - метод вызываемый после успещной работы ajax запроса
+         */
+        moduleIndex.getTasksAjax = function (callback) {
+            $.ajax({
+                url: apiUrl + '/todo-list',
+                type: 'GET',
+                success: function (data) {
+                    callback(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                }
+            });
+        }
+
+        /**
+         * Обновляем статус задачи
+         * @param idTask - ID обновляемой задачи
+         * @param status - новый статус задачи
+         */
+        moduleIndex.updateTaskStatusAjax = function (idTask, status) {
+            $.ajax({
+                url: apiUrl + '/status/' + idTask + '/' + status,
+                type: 'PUT',
+                success: function (data) {
+                    moduleIndex.getTasksAjax(moduleIndex.showList);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Error: " + jqXHR.status + ", обратитесь в поддержку");
+                }
+            });
+        }
+
+        /**
+         * Реакция на нажатие кнопки готовности задачи
+         */
+        moduleIndex.done = function () {
+            if(!confirm("Подтвердить?")) {
+                return;
+            }
+
+            moduleIndex.updateTaskStatusAjax(this.getAttribute('data-id'), 3);
+        }
+
+        /**
+         * Создаем элемент задачи
+         * @param data - данные по задаче
+         */
+        moduleIndex.lineTask = function (data) {
+            const tr = document.createElement('tr');
+            tr.className = "tr";
+            tr.style.background = "white";
+            tr.style.margin = "2px";
+            tr.style.padding = "5px";
+            tr.style.fontSize = "16px";
+
+            const col = document.createElement('td');
+            col.innerText = data.name;
+
+            const col1 = document.createElement('td');
+            col1.innerHTML = statuses[data.status];
+
+            const buttonDone = document.createElement('button');
+            buttonDone.className = "btn btn-success btn-sm";
+            buttonDone.innerText = "Готово";
+            buttonDone.setAttribute('data-id', data.id);
+            buttonDone.onclick = moduleIndex.done;
+
+            const buttons = {
+                1: buttonDone
+            };
+            const col2 = document.createElement('td');
+            if(data.status in buttons) {
+                col2.appendChild(buttons[data.status]);
+            }
+
+
+            tr.appendChild(col);
+            tr.appendChild(col1);
+            tr.appendChild(col2);
+
+            return tr;
+        }
+
+        /**
+         * Отоюражаем задачи
+         * @param data
+         */
+        moduleIndex.showList = function (data) {
+            document.getElementById('tableTasks').innerHTML = "";
+            for (let i=0; i<data.length; i++) {
+                document.getElementById('tableTasks').appendChild(moduleIndex.lineTask(data[i]));
+            }
+        }
+
+        moduleIndex.getTasksAjax(moduleIndex.showList);
+
+    })();
+</script>
+
+</body>
+</html>
