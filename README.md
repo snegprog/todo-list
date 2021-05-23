@@ -12,7 +12,7 @@
 
 1. Создать рабочую БД (СУБД MySQL)
 2. Залить схему БД -
-`mysql -u <user db> -h <host db> <database> < ddl.sql`
+`mysql -u <user db> -h <host db> <database> < ddl.sql` (ddl.sql содержит схему БД и тестовые данные)
 3. Файл `api/config/config.yaml.example` переименовать в `api/config/config.yaml`
 4. Настроить параметры подключения к БД в файле `api/config/config.yaml`
 5. Настроить параметр окружающей среды в файле `api/config/config.yaml`
@@ -21,7 +21,7 @@
 7. Уставновить пакеты composer <br>
 ```
 cd <path project>/api
-composer install
+composer install --no-dev
 ```
 
 ### Запуск
@@ -63,9 +63,10 @@ web приложение станет доступно по url http://127.0.0.1
 ### Не реализовано
 
 1. Полноценная обработка ошибок
-2. Тесты
-3. Полноценные скрипты запуска/остановки
-4. Не написан Swagger
+2. Безопасность
+3. Тесты
+4. Полноценные скрипты запуска/остановки
+5. Не написан Swagger
 
 
 
