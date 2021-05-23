@@ -75,8 +75,8 @@ class AppConfiguration
         }
 
         $paramTasksdb = Kernel::getInstance()->getParameters()['databases']['todolist'];
-        $paths = [__DIR__ . '/../' . DIRECTORY_SEPARATOR . 'Entity'];
-        $isDevMode = 'dev' === Kernel::getInstance()->getParameters()['environment'] ? true : false;
+        $paths = [__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Entity'];
+        $isDevMode = 'dev' === Kernel::getInstance()->getParameters()['environment'] ? true : true; //TODO: разобраться почему с prod не работает
 
         $dbParams = [
             'driver' => 'pdo_mysql',
