@@ -16,6 +16,7 @@
 3. Файл `api/config/config.yaml.example` переименовать в `api/config/config.yaml`
 4. Настроить параметры подключения к БД в файле `api/config/config.yaml`
 5. Настроить параметр окружающей среды в файле `api/config/config.yaml`
+6. Cоздать папку для временных файлов `mkdir api/var`
 6. Изменить права на папку api/var - `chmod 777 api/var`
 7. Уставновить пакеты composer <br>
 ```
