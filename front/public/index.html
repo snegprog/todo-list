@@ -57,15 +57,19 @@
          * @param callback - метод вызываемый после успещной работы ajax запроса
          */
         moduleIndex.getTasksAjax = function (callback) {
-            $.ajax({
-                url: apiUrl + '/todo-list',
-                type: 'GET',
-                success: function (data) {
-                    callback(data);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert(jqXHR.responseText);
+            fetch(
+                apiUrl + '/todo-list', {
+                    method: 'GET'
                 }
+            ).then((res) => {
+                if (res.status !== 200) {
+                    alert("ERROR: Код ошибки " + res.status)
+                    return;
+                }
+
+                res.json().then((newdata) => {
+                    callback(newdata);
+                });
             });
         }
 
@@ -75,15 +79,17 @@
          * @param status - новый статус задачи
          */
         moduleIndex.updateTaskStatusAjax = function (idTask, status) {
-            $.ajax({
-                url: apiUrl + '/status/' + idTask + '/' + status,
-                type: 'PUT',
-                success: function (data) {
-                    moduleIndex.getTasksAjax(moduleIndex.showList);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert("Error: " + jqXHR.status + ", обратитесь в поддержку");
+            fetch(
+                apiUrl + '/status/' + idTask + '/' + status, {
+                    method: 'PUT'
                 }
+            ).then((res) => {
+                if (res.status !== 200) {
+                    alert("ERROR: Код ошибки " + res.status)
+                    return;
+                }
+
+                moduleIndex.getTasksAjax(moduleIndex.showList);
             });
         }
 
@@ -94,7 +100,6 @@
             if(!confirm("Подтвердить?")) {
                 return;
             }
-
             moduleIndex.updateTaskStatusAjax(this.getAttribute('data-id'), 3);
         }
 
