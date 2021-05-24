@@ -15,7 +15,7 @@ class Task implements TasksInterface
      * Менеджер работы с БД.
      * @var EntityManager
      */
-    protected EntityManager $em;
+    private EntityManager $em;
 
     /**
      * Task constructor.

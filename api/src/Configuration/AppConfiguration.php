@@ -33,7 +33,7 @@ class AppConfiguration
     /**
      * @var EntityManager|null
      */
-    private static ?EntityManager $em = null;
+    private static EntityManager $em;
 
     /**
      * Бин конфигурационных данных приложения
@@ -70,7 +70,7 @@ class AppConfiguration
      */
     public function entityManager(): EntityManager
     {
-        if(AppConfiguration::$em) {
+        if(!empty(AppConfiguration::$em)) {
             return AppConfiguration::$em;
         }
 
@@ -95,7 +95,7 @@ class AppConfiguration
     }
 
     /**
-     * Корневой сервис
+     * Сервис работы с задачами
      * @Bean
      */
     public function tasks(): TasksInterface
