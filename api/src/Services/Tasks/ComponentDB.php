@@ -17,7 +17,7 @@ class ComponentDB implements TasksInterface
      * Менеджер работы с БД.
      * @var EntityManager
      */
-    protected EntityManager $em;
+    private EntityManager $em;
 
     /**
      * ComponentDB constructor.
