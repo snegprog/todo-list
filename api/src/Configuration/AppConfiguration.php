@@ -48,8 +48,8 @@ class AppConfiguration
     public function appConfig(): array
     {
         $config = \yaml_parse_file(
-            __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.
-            '..'.DIRECTORY_SEPARATOR.Kernel::CONFIG_DIR.DIRECTORY_SEPARATOR.Kernel::CONFIG_FILE
+            __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR .
+            '..' . DIRECTORY_SEPARATOR . Kernel::CONFIG_DIR.DIRECTORY_SEPARATOR . Kernel::CONFIG_FILE
         );
 
         return $config;
