@@ -31,9 +31,14 @@ use Psr\Log\LoggerInterface;
 class AppConfiguration
 {
     /**
-     * @var EntityManager|null
+     * @var EntityManager
      */
     private static EntityManager $em;
+
+    /**
+     * @var TasksInterface
+     */
+    private static TasksInterface $tasks;
 
     /**
      * Бин конфигурационных данных приложения
@@ -100,6 +105,12 @@ class AppConfiguration
      */
     public function tasks(): TasksInterface
     {
-        return new Task($this->entityManager());
+        if(!empty(AppConfiguration::$tasks)) {
+            return AppConfiguration::$tasks;
+        }
+
+        AppConfiguration::$tasks = new Task($this->entityManager());
+        
+        return AppConfiguration::$tasks;
     }
 }
