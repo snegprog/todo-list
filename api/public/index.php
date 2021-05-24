@@ -16,5 +16,4 @@ $request = ServerRequestFactory::fromGlobals(
     $_FILES
 );
 
-$kernel = Kernel::getInstance();
-$kernel->runHttp($request);
+(new Kernel())->runHttp($request);

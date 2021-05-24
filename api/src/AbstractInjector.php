@@ -23,7 +23,7 @@ abstract class AbstractInjector
     private function run(): void
     {
         $ref = new \ReflectionClass($this->getNameOfClass());
-        $conteiner = Kernel::getInstance()->getContainer();
+        $conteiner = (new Kernel())->getContainer();
 
         $pattern = "/@Inject ([^\s]+)/";
         foreach ($ref->getProperties() as $refChild) {

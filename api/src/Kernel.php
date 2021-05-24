@@ -31,27 +31,6 @@ final class Kernel
     private static ContainerInterface $container;
 
     /**
-     * Экземпляр ядра.
-     *
-     * @var Kernel
-     */
-    private static Kernel $instance;
-
-    /**
-     * Возвращаем инстанс ядра.
-     */
-    public static function getInstance(): Kernel
-    {
-        if (isset(self::$instance) && self::$instance instanceof self) {
-            return self::$instance;
-        }
-
-        self::$instance = new self();
-
-        return self::$instance;
-    }
-
-    /**
      * Запуск ядра в среде web.
      */
     public function runHttp(ServerRequestInterface $request): void
@@ -94,13 +73,5 @@ final class Kernel
     public function getParameters(): array
     {
         return $this->getContainer()->get('appConfig');
-    }
-
-    private function __clone()
-    {
-    }
-
-    private function __wakeup()
-    {
     }
 }
