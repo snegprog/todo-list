@@ -24,17 +24,26 @@ final class Kernel
     public const CONFIG_DIR = 'config';
 
     /**
-     * Контейнер приложения.
-     *
-     * @var ContainerInterface
+     * @var ContainerInterface - Контейнер приложения
      */
     private static ContainerInterface $container;
+
+    /**
+     * @var bool - признак определены ли web роуты
+     */
+    private static bool $router;
 
     /**
      * Запуск ядра в среде web.
      */
     public function runHttp(ServerRequestInterface $request): void
     {
+        if(!empty(Kernel::$router) && Kernel::$router) {
+            return;
+        }
+
+        Kernel::$router = true;
+
         $responseFactory = new ResponseFactory();
         $strategy = new JsonStrategy($responseFactory);
         $router = (new Router())->setStrategy($strategy);
