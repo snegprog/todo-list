@@ -8,7 +8,8 @@ use App\Entity\Tasks;
 use Doctrine\ORM\EntityManager;
 
 /**
- * Class ComponentDB - работа с базой данных по задачам
+ * Компонент работы с БД по задачам
+ * Class ComponentDB
  * @package App\Services\Tasks
  */
 class ComponentDB implements TasksInterface

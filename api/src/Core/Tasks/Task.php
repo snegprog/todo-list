@@ -9,6 +9,11 @@ use App\Entity\Tasks;
 use App\Services\Tasks\ComponentDB;
 use Doctrine\ORM\EntityManager;
 
+/**
+ * Сервси работы с задачами верхнего уровня декоратора
+ * Class Task
+ * @package App\Core\Tasks
+ */
 class Task implements TasksInterface
 {
     /**
@@ -39,7 +44,7 @@ class Task implements TasksInterface
      */
     public function getAll(): iterable
     {
-        return $this->createDEcorator()->getAll();
+        return $this->createDecorator()->getAll();
     }
 
     /**
@@ -55,7 +60,7 @@ class Task implements TasksInterface
      */
     public function update(Tasks $task): bool
     {
-        return $this->createDEcorator()->update($task);
+        return $this->createDecorator()->update($task);
     }
 
     /**
@@ -66,7 +71,11 @@ class Task implements TasksInterface
         return true;
     }
 
-    private function createDEcorator(): TasksInterface
+    /**
+     * Формируем нужный нам декоратор
+     * @return TasksInterface
+     */
+    private function createDecorator(): TasksInterface
     {
        return new ComponentDB($this->em);
     }

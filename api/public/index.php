@@ -7,7 +7,6 @@ require __DIR__.'/../vendor/autoload.php';
 use App\Kernel;
 use Laminas\Diactoros\ServerRequestFactory;
 
-/** получаем запрос */
 $request = ServerRequestFactory::fromGlobals(
     $_SERVER,
     $_GET,

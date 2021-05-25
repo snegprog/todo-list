@@ -16,6 +16,11 @@ namespace App\Repository;
 
 use App\Entity\EntityInterface;
 
+/**
+ * Интерфейс необходимых методов для операций CRUD с записью
+ * Interface CrudInterface
+ * @package App\Repository
+ */
 interface CrudInterface
 {
     /**

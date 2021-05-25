@@ -14,8 +14,11 @@
 
 namespace App\Repository;
 
-use App\Entity\EntityInterface;
-
+/**
+ * Интерфейс необходимых методов для репозитория по умолчанию
+ * Interface RepositoryInterface
+ * @package App\Repository
+ */
 interface RepositoryInterface
 {
     /**

@@ -5,6 +5,11 @@ namespace App;
 use App\Exceptions\AppException;
 use bitExpert\Disco\BeanException;
 
+/**
+ * Абстрактный класс с реализацией внедрения зависимостей
+ * Class AbstractInjector
+ * @package App
+ */
 abstract class AbstractInjector
 {
     public function __construct()
@@ -20,6 +25,11 @@ abstract class AbstractInjector
         return static::class;
     }
 
+    /**
+     * Производим внедрение зависимостей
+     * @throws AppException
+     * @throws \ReflectionException
+     */
     private function run(): void
     {
         $ref = new \ReflectionClass($this->getNameOfClass());

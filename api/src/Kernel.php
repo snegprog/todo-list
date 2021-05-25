@@ -76,7 +76,6 @@ final class Kernel
 
     /**
      * Получаем конфигурационные параметры приложения.
-     *
      * @return array <string|array> - многомерняй массив с параметрами указанных в config/config.yaml
      */
     public function getParameters(): array

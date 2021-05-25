@@ -6,7 +6,8 @@ namespace App\Core\Tasks;
 use App\Entity\Tasks;
 
 /**
- * Interface TasksInterface - интерфейс взаимодействия с задачами
+ * Интерфейс взаимодействия с задачами
+ * Interface TasksInterface
  * @package App\Core\Tasks
  */
 interface TasksInterface

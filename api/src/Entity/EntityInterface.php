@@ -14,6 +14,12 @@
 
 namespace App\Entity;
 
+/**
+ * Интерфейс необходимых методов в сущностях.
+ * Так же служит для проверки типа данных
+ * Interface EntityInterface
+ * @package App\Entity
+ */
 interface EntityInterface
 {
     /**

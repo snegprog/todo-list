@@ -7,15 +7,35 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Таблица с задачами
  * @ORM\Table(name="tasks")
  * @ORM\Entity(repositoryClass="App\Repository\TasksRepository")
  */
 class Tasks extends MappedSuperclassDate implements EntityInterface
 {
+    /**
+     * Статус задачи "Новая"
+     */
     private const STATUS_NEW = 0;
+
+    /**
+     * Статус задачи "В работе"
+     */
     private const STATUS_IN_PROGRESS = 1;
+
+    /**
+     * Статус задачи "В ожидании"
+     */
     private const STATUS_WAIT = 2;
+
+    /**
+     * Статус задачи "Выполнена"
+     */
     private const STATUS_DONE = 3;
+
+    /**
+     * Массив для проверки корректности статуса
+     */
     private const STATUSES = [
         self::STATUS_NEW => true,
         self::STATUS_IN_PROGRESS => true,
@@ -42,14 +62,16 @@ class Tasks extends MappedSuperclassDate implements EntityInterface
     private int $status;
 
     /**
+     * Возвращаем название задачи
      * @return string
      */
     public function getName(): string
     {
-        return $this->name;
+        return empty($this->name) ? '': $this->name;
     }
 
     /**
+     * Устанвливаем название задачи
      * @param string $name
      */
     public function setName(string $name): self
@@ -60,14 +82,16 @@ class Tasks extends MappedSuperclassDate implements EntityInterface
     }
 
     /**
+     * Возвращаем описание задачи
      * @return string
      */
     public function getDescription(): string
     {
-        return $this->description;
+        return empty($this->description) ? '': $this->description;
     }
 
     /**
+     * Устанавливаем описание задачи
      * @param string $description
      */
     public function setDescription(string $description): self
@@ -78,15 +102,18 @@ class Tasks extends MappedSuperclassDate implements EntityInterface
     }
 
     /**
-     * @return int
+     * Возвращаем статус задачи
+     * @return int - -1|key self::STATUSES (-1 если статус не определен)
      */
     public function getStatus(): int
     {
-        return $this->status;
+        return empty($this->status) ? -1: $this->status;
     }
 
     /**
-     * @param int $status
+     * Устанваливаем статус задачи
+     * @param int $status - статус задачи
+     * @throws \InvalidArgumentException
      */
     public function setStatus(int $status): self
     {
@@ -100,6 +127,7 @@ class Tasks extends MappedSuperclassDate implements EntityInterface
     }
 
     /**
+     * Возвращаем данные задачи в виде массива
      * @return array
      */
     public function toArray(): iterable

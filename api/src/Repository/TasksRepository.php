@@ -7,6 +7,11 @@ namespace App\Repository;
 use App\Entity\Tasks;
 use Doctrine\ORM\EntityRepository;
 
+/**
+ * Репозиторий работы с задачами
+ * Class TasksRepository
+ * @package App\Repository
+ */
 class TasksRepository extends EntityRepository implements CrudInterface, RepositoryInterface
 {
     /**
