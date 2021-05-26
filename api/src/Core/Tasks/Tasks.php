@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Tasks;
 
 
-use App\Entity\Tasks;
+use App\Entity\Task;
 use App\Services\Tasks\ComponentDB;
 use Doctrine\ORM\EntityManager;
 
@@ -14,7 +14,7 @@ use Doctrine\ORM\EntityManager;
  * Class Task
  * @package App\Core\Tasks
  */
-class Task implements TasksInterface
+class Tasks implements TasksInterface
 {
     /**
      * Менеджер работы с БД.
@@ -34,7 +34,7 @@ class Task implements TasksInterface
     /**
      * @inheritDoc
      */
-    public function get(int $id): ?Tasks
+    public function get(int $id): ?Task
     {
         return null;
     }
@@ -58,7 +58,7 @@ class Task implements TasksInterface
     /**
      * @inheritDoc
      */
-    public function update(Tasks $task): bool
+    public function update(Task $task): bool
     {
         return $this->createDecorator()->update($task);
     }
@@ -66,7 +66,7 @@ class Task implements TasksInterface
     /**
      * @inheritDoc
      */
-    public function create(Tasks $task): bool
+    public function create(Task $task): bool
     {
         return true;
     }

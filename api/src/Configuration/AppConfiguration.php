@@ -13,7 +13,7 @@
 
 namespace App\Configuration;
 
-use App\Core\Tasks\Task;
+use App\Core\Tasks\Tasks;
 use App\Core\Tasks\TasksInterface;
 use App\Kernel;
 use bitExpert\Disco\Annotations\Bean;
@@ -109,7 +109,7 @@ class AppConfiguration
             return AppConfiguration::$tasks;
         }
 
-        AppConfiguration::$tasks = new Task($this->entityManager());
+        AppConfiguration::$tasks = new Tasks($this->entityManager());
         
         return AppConfiguration::$tasks;
     }

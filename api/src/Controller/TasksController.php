@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Core\Tasks\TasksInterface;
-use App\Entity\Tasks;
+use App\Entity\Task;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
@@ -59,7 +59,7 @@ class TasksController extends AbstractController
     {
         $this->logget->info('TasksController::status');
 
-        $task = $this->em->getRepository(Tasks::class)->find((int)$args['id']);
+        $task = $this->em->getRepository(Task::class)->find((int)$args['id']);
         if(!$task) {
             throw new \InvalidArgumentException('Не найдена задача', 400);
         }

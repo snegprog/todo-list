@@ -14,14 +14,14 @@ class MappedSuperclassDate extends MappedSuperclassBase
     /**
      * @var \DateTimeInterface
      *
-     * @ORM\Column(name="create_at", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="create_at", type="datetime", options={"default"="CURRENT_TIMESTAMP"})
      */
     private $createAt;
 
     /**
      * @var \DateTimeInterface
      *
-     * @ORM\Column(name="update_at", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="update_at", type="datetime", options={"default"="CURRENT_TIMESTAMP"})
      */
     private $updateAt;
 

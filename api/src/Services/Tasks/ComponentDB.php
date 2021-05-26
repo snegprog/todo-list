@@ -4,7 +4,7 @@
 namespace App\Services\Tasks;
 
 use App\Core\Tasks\TasksInterface;
-use App\Entity\Tasks;
+use App\Entity\Task;
 use Doctrine\ORM\EntityManager;
 
 /**
@@ -32,7 +32,7 @@ class ComponentDB implements TasksInterface
     /**
      * @inheritDoc
      */
-    public function get(int $id): ?Tasks
+    public function get(int $id): ?Task
     {
         return null;
     }
@@ -43,7 +43,7 @@ class ComponentDB implements TasksInterface
     public function getAll(): iterable
     {
         $result = [];
-        foreach ($this->em->getRepository(Tasks::class)->findAll() as $task) {
+        foreach ($this->em->getRepository(Task::class)->findAll() as $task) {
             $result[] = $task->toArray();
         }
 
@@ -61,9 +61,9 @@ class ComponentDB implements TasksInterface
     /**
      * @inheritDoc
      */
-    public function update(Tasks $task): bool
+    public function update(Task $task): bool
     {
-        $this->em->getRepository(Tasks::class)->update($task);
+        $this->em->getRepository(Task::class)->update($task);
 
         return true;
     }
@@ -71,7 +71,7 @@ class ComponentDB implements TasksInterface
     /**
      * @inheritDoc
      */
-    public function create(Tasks $task): bool
+    public function create(Task $task): bool
     {
         return true;
     }

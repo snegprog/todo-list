@@ -3,7 +3,7 @@
 
 namespace App\Core\Tasks;
 
-use App\Entity\Tasks;
+use App\Entity\Task;
 
 /**
  * Интерфейс взаимодействия с задачами
@@ -15,9 +15,9 @@ interface TasksInterface
     /**
      * Возвращаем задачу по ID
      * @param int $id
-     * @return Tasks|null
+     * @return Task|null
      */
-    public function get(int $id): ?Tasks;
+    public function get(int $id): ?Task;
 
     /**
      * Возвращаем все задачи
@@ -33,15 +33,15 @@ interface TasksInterface
 
     /**
      * Обновляем задачу
-     * @param Tasks $task
+     * @param Task $task
      * @return bool
      */
-    public function update(Tasks $task): bool;
+    public function update(Task $task): bool;
 
     /**
      * Создаем задачу
-     * @param Tasks $task
+     * @param Task $task
      * @return bool
      */
-    public function create(Tasks $task): bool;
+    public function create(Task $task): bool;
 }

@@ -9,9 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Таблица с задачами
  * @ORM\Table(name="tasks")
- * @ORM\Entity(repositoryClass="App\Repository\TasksRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TaskRepository")
  */
-class Tasks extends MappedSuperclassDate implements EntityInterface
+class Task extends MappedSuperclassDate implements EntityInterface
 {
     /**
      * Статус задачи "Новая"
@@ -62,7 +62,7 @@ class Tasks extends MappedSuperclassDate implements EntityInterface
     private int $status;
 
     /**
-     * Tasks constructor.
+     * Task constructor.
      */
     public function __construct()
     {
