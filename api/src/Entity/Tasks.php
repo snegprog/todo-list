@@ -62,12 +62,23 @@ class Tasks extends MappedSuperclassDate implements EntityInterface
     private int $status;
 
     /**
+     * Tasks constructor.
+     */
+    public function __construct()
+    {
+        $this->name = '';
+        $this->description = '';
+        $this->status = -1;
+    }
+
+
+    /**
      * Возвращаем название задачи
      * @return string
      */
     public function getName(): string
     {
-        return empty($this->name) ? '': $this->name;
+        return $this->name;
     }
 
     /**
@@ -87,7 +98,7 @@ class Tasks extends MappedSuperclassDate implements EntityInterface
      */
     public function getDescription(): string
     {
-        return empty($this->description) ? '': $this->description;
+        return $this->description;
     }
 
     /**
@@ -107,7 +118,7 @@ class Tasks extends MappedSuperclassDate implements EntityInterface
      */
     public function getStatus(): int
     {
-        return empty($this->status) ? -1: $this->status;
+        return $this->status;
     }
 
     /**

@@ -119,7 +119,7 @@
             col.innerText = data.name;
 
             const col1 = document.createElement('td');
-            col1.innerHTML = statuses[data.status];
+            col1.innerHTML = !(data.status in statuses) ? '<span style="color: red;">Не определено</span>': statuses[data.status];
 
             const buttonDone = document.createElement('button');
             buttonDone.className = "btn btn-success btn-sm";
